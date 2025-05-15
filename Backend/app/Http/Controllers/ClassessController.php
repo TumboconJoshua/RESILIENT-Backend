@@ -13,7 +13,7 @@ class ClassessController extends Controller
      */
     public function index()
     {
-        $classes = ClassesModel::with(['schoolYear', 'subjects', 'students'])
+        $classes = ClassesModel::with(['schoolYear', 'teacherSubjects', 'students'])
             ->get()
             ->map(function ($class) {
                 return [
@@ -22,7 +22,8 @@ class ClassessController extends Controller
                     'Track' => $class->Track,
                     'classType' => $class->classType ?? 'Subject',
                     'Grade_Level' => $class->Grade_Level,
-                    'subject_id' => $class->subjects->first()->Subject_ID ?? null
+                    'subject_name' => $class->teacherSubjects->first()->SubjectName ?? 'No Subject',
+                    'subject_id' => $class->teacherSubjects->first()->Subject_ID ?? null
                 ];
             });
         
