@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ClassSubjectModel;
+use App\Models\ClassSubject;
 
 class ClassesModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'class_table';
+    protected $table = 'classes';
     protected $primaryKey = 'Class_ID';
 
     public function students()
     {
-        return $this->hasMany(StudentClass::class, 'Class_ID');
+        return $this->hasMany(StudentClassModel::class, 'Class_ID');
     }
 
     public function subjects()

@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResearchController;
 use Illuminate\Http\Exceptions\NotFoundHttpException;
+use App\Http\Controllers\ClassessController;
+use App\Http\Controllers\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,20 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/teacher/research/{research}', [ResearchController::class, 'destroy']);
     Route::apiResource('/teacher/lesson-plans', \App\Http\Controllers\LessonPlanController::class);
 });
+
+// Classes endpoints
+Route::get('/classes', [ClassessController::class, 'index']);
+Route::get('/classes/{id}', [ClassessController::class, 'show']);
+Route::post('/classes', [ClassessController::class, 'store']);
+Route::put('/classes/{id}', [ClassessController::class, 'update']);
+Route::delete('/classes/{id}', [ClassessController::class, 'destroy']);
+
+// Subjects endpoints
+Route::get('/subjects', [SubjectController::class, 'index']);
+Route::get('/subjects/{id}', [SubjectController::class, 'show']);
+Route::post('/subjects', [SubjectController::class, 'store']);
+Route::put('/subjects/{id}', [SubjectController::class, 'update']);
+Route::delete('/subjects/{id}', [SubjectController::class, 'destroy']);
 
 
 

@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Research;
+use App\Models\ClassesModel;
+use App\Models\SubjectModel;
 
 class TeacherModel extends Authenticatable
 {
@@ -38,12 +40,12 @@ class TeacherModel extends Authenticatable
 
     public function subjects()
     {
-        return $this->hasMany(Subject::class, 'Teacher_ID');
+        return $this->hasMany(SubjectModel::class, 'Teacher_ID');
     }
 
     public function classes()
     {
-        return $this->hasMany(Classes::class, 'Teacher_ID');
+        return $this->hasMany(ClassesModel::class, 'Teacher_ID');
     }
 
     public function researches()

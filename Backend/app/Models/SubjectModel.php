@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SubjectGrade;
 
 class SubjectModel extends Model
 {
     use HasFactory;
 
     protected $primaryKey = 'Subject_ID';
+    protected $table = 'subjects';
 
     public function grades()
     {
@@ -18,6 +20,6 @@ class SubjectModel extends Model
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class, 'Teacher_ID');
+        return $this->belongsTo(TeacherModel::class, 'Teacher_ID');
     }
 }
