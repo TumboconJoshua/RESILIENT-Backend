@@ -18,8 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('SY_ID');
             $table->enum('Grade_Level', ['7','8','9','10','11','12']);
             $table->string('Track');
+            $table->enum('classType', ['Advisory', 'Regular']);
             $table->unsignedBigInteger('Teacher_ID');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         
             $table->foreign('SY_ID')->references('SY_ID')->on('school_years');
             $table->foreign('Teacher_ID')->references('Teacher_ID')->on('teachers');

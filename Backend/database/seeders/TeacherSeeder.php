@@ -15,7 +15,7 @@ class TeacherSeeder extends Seeder
 
         // Create admin teacher
         DB::table('teachers')->insert([
-            'EmployeeNo' => 'ADMIN001',
+            'EmployeeNo' => 'TCH001',
             'Email' => 'admin@example.com',
             'Password' => Hash::make('admin123'),
             'FirstName' => 'System',
