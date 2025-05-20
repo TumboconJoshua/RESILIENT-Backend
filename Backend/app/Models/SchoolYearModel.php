@@ -9,10 +9,11 @@ class SchoolYearModel extends Model
 {
     use HasFactory;
 
+    protected $table = 'school_years';  // <-- set your actual table name here
     protected $primaryKey = 'SY_ID';
 
     public function classes()
     {
-        return $this->hasMany(Classes::class, 'SY_ID');
+        return $this->hasMany(ClassesModel::class, 'SY_ID'); // Also use ClassesModel if that's your class name
     }
 }

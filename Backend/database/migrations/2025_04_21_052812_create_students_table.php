@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('Track');
             $table->timestamps();
             $table->enum('Status', ['Pending', 'Accepted', 'Declined']);
+            $table->string('comments')->nullable();
         });
     }
 

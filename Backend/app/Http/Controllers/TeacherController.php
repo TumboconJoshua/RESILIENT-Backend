@@ -138,4 +138,7 @@ class TeacherController extends Controller
 
         return response()->json($research, 201);
     }
+
+    
+
 }

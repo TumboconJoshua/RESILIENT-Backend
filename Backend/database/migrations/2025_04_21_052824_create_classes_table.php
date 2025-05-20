@@ -17,13 +17,18 @@ return new class extends Migration
             $table->string('Section');
             $table->unsignedBigInteger('SY_ID');
             $table->enum('Grade_Level', ['7','8','9','10','11','12']);
-            $table->string('Track');
-            $table->unsignedBigInteger('Teacher_ID');
+            $table->string('Track')->nullable(); // if applicable only to SHS
+            $table->unsignedBigInteger('Adviser_ID')->nullable();
+            $table->enum('Curriculum', ['JHS', 'SHS'])->nullable();
+            $table->text('comments')->nullable();
+            $table->enum('Status', ['Pending', 'Active', 'Inactive'])->default('Pending');
             $table->timestamps();
-        
-            $table->foreign('SY_ID')->references('SY_ID')->on('school_years');
-            $table->foreign('Teacher_ID')->references('Teacher_ID')->on('teachers');
+            $table->foreign('SY_ID')->references('SY_ID')->on('school_years')->onDelete('cascade');
+            $table->foreign('Adviser_ID')->references('Teacher_ID')->on('teachers')->onDelete('set null');
+
+            $table->index(['SY_ID', 'Grade_Level']);
         });
+
     }
 
     /**

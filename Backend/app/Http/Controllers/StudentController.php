@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\StudentModel;
 use Illuminate\Http\Request;
 
+
 class StudentController extends Controller
 {
    public function getAll()
@@ -71,5 +72,19 @@ class StudentController extends Controller
             'message' => 'Student created successfully.',
             'student' => $student
         ], 201);
+    }
+
+    public function acceptProfile(Request $request, $id)
+    {
+        $student = StudentModel::find($id);
+
+        if (!$student) {
+            return response()->json(['message' => 'Student not found.'], 404);
+        }
+
+        $student->Status = 'accepted';
+        $student->save();
+
+        return response()->json(['message' => 'Student profile accepted successfully.']);
     }
 }

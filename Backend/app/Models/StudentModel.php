@@ -40,6 +40,7 @@ class StudentModel extends Model
         'Curriculum',
         'Track',
         'Status',
+        'comments',
     ];
 
     public function grades()

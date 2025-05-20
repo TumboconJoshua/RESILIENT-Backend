@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id('StudentClass_ID');
             $table->unsignedBigInteger('Student_ID');
             $table->unsignedBigInteger('Class_ID');
+            $table->string('ClassName');
             $table->string('SY_ID');
-            $table->unsignedBigInteger('Teacher_ID');
+            $table->unsignedBigInteger('Teacher_ID')->nullable();
             $table->boolean('isAdvisory')->default(false);
             $table->timestamps();
 

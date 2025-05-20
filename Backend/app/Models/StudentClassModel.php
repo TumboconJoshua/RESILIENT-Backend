@@ -9,9 +9,23 @@ class StudentClassModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'student_class_table__junction';
+    // Correct the table name
+    protected $table = 'student_class';
+
+    // Primary key
     protected $primaryKey = 'StudentClass_ID';
 
+    // Fillable fields for mass assignment
+    protected $fillable = [
+        'Student_ID',
+        'Class_ID',
+        'SY_ID',
+        'Teacher_ID',
+        'ClassName',
+        'isAdvisory',
+    ];
+
+    // Relationships
     public function student()
     {
         return $this->belongsTo(Student::class, 'Student_ID');
@@ -20,6 +34,11 @@ class StudentClassModel extends Model
     public function class()
     {
         return $this->belongsTo(Classes::class, 'Class_ID');
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class, 'Teacher_ID');
     }
 
     public function schoolYear()
