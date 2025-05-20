@@ -15,11 +15,8 @@ return new class extends Migration
             $table->id('Subject_ID');
             $table->string('SubjectName');
             $table->integer('SubjectCode');
-            $table->string('Track');
-            $table->unsignedBigInteger('Teacher_ID');
             $table->timestamps();
         
-            $table->foreign('Teacher_ID')->references('Teacher_ID')->on('teachers');
         });
     }
 

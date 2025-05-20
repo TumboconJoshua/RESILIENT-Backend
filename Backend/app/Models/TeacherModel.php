@@ -38,8 +38,9 @@ class TeacherModel extends Authenticatable
 
     public function subjects()
     {
-        return $this->hasMany(Subject::class, 'Teacher_ID');
+        return $this->belongsToMany(Subject::class, 'teachers_subject', 'teacher_id', 'subject_id');
     }
+
 
     public function classes()
     {

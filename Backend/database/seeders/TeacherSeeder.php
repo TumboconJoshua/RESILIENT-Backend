@@ -26,6 +26,9 @@ class TeacherSeeder extends Seeder
             'Position' => 'SuperAdmin',
             'ContactNumber' => '09170000001',
             'Address' => 'SuperAdmin Address',
+            'Educational_Attainment' => 'Master\'s Degree',
+            'Teaching_Position' => 'Teacher 1',
+
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -43,6 +46,10 @@ class TeacherSeeder extends Seeder
             'Position' => 'Admin',
             'ContactNumber' => '09171234567',
             'Address' => 'Admin Address',
+            'Educational_Attainment' => 'Master\'s Degree',
+            'Teaching_Position' => 'Teacher 1',
+
+            
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -60,8 +67,11 @@ class TeacherSeeder extends Seeder
             'Position' => 'Teacher',
             'ContactNumber' => '09172345678',
             'Address' => 'Teacher Address',
+            'Educational_Attainment' => 'Master\'s Degree',
+            'Teaching_Position' => 'Teacher 1',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
     }
 }
+    

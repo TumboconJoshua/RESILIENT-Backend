@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('FirstName');
             $table->string('LastName');
             $table->string('MiddleName')->nullable();
+            $table->string('Suffix')->nullable();
+            $table->string('Educational_Attainment');
+            $table->string('Teaching_Position');
             $table->date('BirthDate');
             $table->enum('Sex', ['M', 'F']);
             $table->enum('Position', ['Admin', 'Teacher', 'SuperAdmin']);
