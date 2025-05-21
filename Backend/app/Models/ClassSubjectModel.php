@@ -9,22 +9,22 @@ class ClassSubjectModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'class_subject_table__junction';
+    protected $table = 'class_subject';
     protected $primaryKey = 'StudentClassSub_ID';
 
     public function subject()
     {
-        return $this->belongsTo(Subject::class, 'Subject_ID');
+        return $this->belongsTo(SubjectModel::class, 'Subject_ID');
     }
 
     public function class()
     {
-        return $this->belongsTo(Classes::class, 'Class_ID');
+        return $this->belongsTo(ClassesModel::class, 'Class_ID');
     }
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class, 'Teacher_ID');
+        return $this->belongsTo(TeacherModel::class, 'Teacher_ID');
     }
     
 }

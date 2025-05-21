@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\StudentModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 
 class StudentController extends Controller
@@ -87,4 +89,49 @@ class StudentController extends Controller
 
         return response()->json(['message' => 'Student profile accepted successfully.']);
     }
+
+    public function getStudentSubjects($studentId)
+{
+    try {
+        // Get the student's classes
+        $studentClasses = DB::table('student_class')
+            ->where('Student_ID', $studentId)
+            ->pluck('Class_ID');
+            
+        // Get subjects for these classes
+        $subjects = DB::table('subjects')
+            ->whereIn('Class_ID', $studentClasses)
+            ->select(
+                'Subject_ID as subject_id',
+                'SubjectName as subjectName',
+                'Class_ID as class_id'
+            )
+            ->get();
+            
+        // For each subject, get the student's grades if available
+        foreach ($subjects as $subject) {
+            // You would add grade retrieval logic here
+            // For example:
+            // $subject->grades = DB::table('grades')
+            //    ->where('Student_ID', $studentId)
+            //    ->where('Subject_ID', $subject->subject_id)
+            //    ->first();
+                
+            // Add student_id as an array for compatibility with your front-end code
+            $subject->student_id = [$studentId];
+        }
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Subjects retrieved successfully',
+            'subjects' => $subjects
+        ]);
+    } catch (Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Failed to retrieve subjects: ' . $e->getMessage(),
+            'subjects' => []
+        ], 500);
+    }
+}
 }

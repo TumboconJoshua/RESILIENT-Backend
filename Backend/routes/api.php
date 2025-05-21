@@ -10,6 +10,8 @@ use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\AdminStudentClassController;
 use Illuminate\Http\Exceptions\NotFoundHttpException;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +68,26 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/teacher/research/{research}', [ResearchController::class, 'destroy']);
     Route::apiResource('/teacher/lesson-plans', \App\Http\Controllers\LessonPlanController::class);
 
-    });
+    // Class Routes
+    Route::get('/classes', [ClassController::class, 'getClasses']);
+    Route::get('/classes/{classId}', [ClassController::class, 'getClassDetails']);
+    Route::get('/classes/{classId}/students', [ClassController::class, 'getClassStudents']);
+
+    // Dashboard Routes
+    Route::get('/teacher/advisory-stats', [DashboardController::class, 'getAdvisoryStats']);
+    Route::get('/teacher/subject-classes', [DashboardController::class, 'getSubjectClasses']);
+    Route::get('/teacher/grade-summary', [DashboardController::class, 'getGradeSummary']);
+    Route::get('/teacher/recent-grades', [DashboardController::class, 'getRecentGrades']);
+
+    //Forms Routes
+    Route::get('/teacher/advisory-students', [TeacherController::class, 'getAdvisoryStudents']);
+    Route::get('/student/{student_id}/subjects', [StudentController::class, 'getStudentSubjects']);
+    
+    // Route for submitting a single grade
+    Route::post('/grades', [App\Http\Controllers\SubjectGradeController::class, 'store']);
+    // Route for submitting multiple grades at once
+    Route::post('/grades/bulk', [App\Http\Controllers\SubjectGradeController::class, 'bulkStore']);
+});
 
 
 

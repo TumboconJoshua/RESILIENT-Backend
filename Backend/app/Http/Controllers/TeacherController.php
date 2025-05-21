@@ -8,6 +8,8 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Research;
+use App\Models\ClassesModel;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -139,6 +141,65 @@ class TeacherController extends Controller
         return response()->json($research, 201);
     }
 
-    
+    public function getAdvisoryStudents(Request $request)
+{
+    try {
+        // Get the authenticated teacher
+        $teacher = $request->user();
+        
+        if (!$teacher) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Teacher not authenticated'
+            ], 401);
+        }
+
+        // Get the teacher's ID
+        $teacherId = $teacher->Teacher_ID;
+
+        $advisoryClass = DB::table('classes')
+            ->where('Teacher_ID', $teacherId) 
+            ->where('isAdvisory', true)
+            ->first();
+
+        if (!$advisoryClass) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'No advisory class found for this teacher',
+                'students' => []
+            ]);
+        }
+
+        // Get students in this advisory class
+        $students = DB::table('students')
+            ->join('student_class', 'students.Student_ID', '=', 'student_class.Student_ID')
+            ->where('student_class.Class_ID', $advisoryClass->Class_ID)
+            ->select(
+                'students.Student_ID as student_id',
+                'students.LRN as lrn',
+                'students.FirstName as firstName',
+                'students.LastName as lastName',
+                'students.MiddleName as middleName',
+                'students.Sex as sex',
+                'students.BirthDate as birthDate', 
+                'students.Curriculum as curriculum',
+                DB::raw("CONCAT(IFNULL(students.HouseNo, ''), ', ', IFNULL(students.Barangay, ''), ', ', 
+                     IFNULL(students.Municipality, ''), ', ', IFNULL(students.Province, '')) as address")
+            )
+            ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Advisory students retrieved successfully',
+            'students' => $students
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Failed to retrieve advisory students: ' . $e->getMessage(),
+            'students' => []
+        ], 500);
+    }
+}
 
 }

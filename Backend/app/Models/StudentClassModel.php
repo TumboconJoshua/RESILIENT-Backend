@@ -23,26 +23,29 @@ class StudentClassModel extends Model
         'Teacher_ID',
         'ClassName',
         'isAdvisory',
+        'Status',
+        'created_at',
+        'updated_at'
     ];
 
     // Relationships
     public function student()
     {
-        return $this->belongsTo(Student::class, 'Student_ID');
+        return $this->belongsTo(StudentModel::class, 'Student_ID');
     }
 
     public function class()
     {
-        return $this->belongsTo(Classes::class, 'Class_ID');
+        return $this->belongsTo(ClassesModel::class, 'Class_ID');
     }
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class, 'Teacher_ID');
+        return $this->belongsTo(TeacherModel::class, 'Teacher_ID');
     }
 
     public function schoolYear()
     {
-        return $this->belongsTo(SchoolYear::class, 'SY_ID');
+        return $this->belongsTo(SchoolYearModel::class, 'SY_ID');
     }
 }

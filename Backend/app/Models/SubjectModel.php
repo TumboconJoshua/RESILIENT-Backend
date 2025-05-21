@@ -10,14 +10,15 @@ class SubjectModel extends Model
     use HasFactory;
 
     protected $primaryKey = 'Subject_ID';
+    protected $table = 'subjects';
 
     public function grades()
     {
-        return $this->hasMany(SubjectGrade::class, 'Subject_ID');
+        return $this->hasMany(SubjectGradeModel::class, 'Subject_ID');
     }
 
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class, 'Teacher_ID');
+        return $this->belongsTo(TeacherModel::class, 'Teacher_ID');
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\TeacherModel;
 use App\Models\SchoolYearModel;
-use App\Models\ClassesModel;
+use App\Models\StudentModel;
 
 
 
@@ -40,7 +40,13 @@ class ClassesModel extends Model
 
     public function students()
     {
-        return $this->hasMany(StudentClass::class, 'Class_ID');
+        return $this->belongsToMany(StudentModel::class, 'student_class', 'Class_ID', 'Student_ID')
+            ->withPivot('isAdvisory', 'SY_ID', 'Teacher_ID', 'created_at', 'updated_at');
+    }
+
+    public function advisoryStudents()
+    {
+        return $this->students()->wherePivot('isAdvisory', 1);
     }
 
     public function getStudentCountByTrack()
@@ -52,7 +58,7 @@ class ClassesModel extends Model
 
     public function subjects()
     {
-        return $this->hasMany(ClassSubject::class, 'Class_ID');
+        return $this->hasMany(ClassSubjectModel::class, 'Class_ID');
     }
 
     public function schoolYear()

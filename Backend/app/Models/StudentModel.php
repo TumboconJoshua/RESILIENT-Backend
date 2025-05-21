@@ -45,11 +45,11 @@ class StudentModel extends Model
 
     public function grades()
     {
-        return $this->hasMany(SubjectGrade::class, 'Student_ID');
+        return $this->hasMany(SubjectGradeModel::class, 'Student_ID');
     }
 
     public function studentClasses()
     {
-        return $this->hasMany(StudentClass::class, 'Student_ID');
+        return $this->hasMany(StudentClassModel::class, 'Student_ID');
     }
 }

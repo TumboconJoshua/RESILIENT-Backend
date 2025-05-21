@@ -30,6 +30,6 @@ class TeachersSubject extends Model
 
     public function subject()
     {
-        return $this->belongsTo(Subject::class, 'subject_id', 'Subject_ID');
+        return $this->belongsTo(SubjectModel::class, 'subject_id', 'Subject_ID');
     }
 }
