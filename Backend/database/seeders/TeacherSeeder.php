@@ -61,8 +61,8 @@ class TeacherSeeder extends Seeder
             [
                 'Email' => 'teacher@example.com',
                 'Password' => Hash::make('teacher123'),
-                'FirstName' => 'One',
-                'LastName' => 'One',
+                'FirstName' => 'Juan',
+                'LastName' => 'Dela Cruz',
                 'MiddleName' => 'Santos',
                 'BirthDate' => '1990-05-10',
                 'Sex' => 'F',
@@ -81,8 +81,8 @@ class TeacherSeeder extends Seeder
             [
                 'Email' => 'teacher2@example.com',
                 'Password' => Hash::make('teacher123'),
-                'FirstName' => 'Two',
-                'LastName' => 'Two',
+                'FirstName' => 'John',
+                'LastName' => 'Doe',
                 'MiddleName' => 'Santos',
                 'BirthDate' => '1990-05-10',
                 'Sex' => 'F',
@@ -101,8 +101,8 @@ class TeacherSeeder extends Seeder
             [
                 'Email' => 'teacher3@example.com',
                 'Password' => Hash::make('teacher123'),
-                'FirstName' => 'Three',
-                'LastName' => 'Three',
+                'FirstName' => 'Theresita',
+                'LastName' => 'Garcia',
                 'MiddleName' => 'Santos',
                 'BirthDate' => '1990-05-10',
                 'Sex' => 'F',
@@ -116,23 +116,23 @@ class TeacherSeeder extends Seeder
             ]
         );
 
-        // DB::table('teachers')->insert([
-        //     'EmployeeNo' => 'BOOK001',
-        //     'Email' => 'bookkeeper@example.com',
-        //     'Password' => Hash::make('bookkeeper123'),
-        //     'FirstName' => 'Maria',
-        //     'LastName' => 'Reyes',
-        //     'MiddleName' => 'Lopez',
-        //     'BirthDate' => '1988-08-20',
-        //     'Sex' => 'F',
-        //     'Position' => 'Book-keeping',
-        //     'ContactNumber' => '09179876543',
-        //     'Address' => '123 Bookkeeping St., Manila',
-        //     'Educational_Attainment' => 'Bachelor of Science in Accountancy',
-        //     'Teaching_Position' => 'Book-keeping',
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
+        DB::table('teachers')->insert([
+            'EmployeeNo' => 'BOOK001',
+            'Email' => 'bookkeeper@example.com',
+            'Password' => Hash::make('bookkeeper123'),
+            'FirstName' => 'Maria',
+            'LastName' => 'Reyes',
+            'MiddleName' => 'Lopez',
+            'BirthDate' => '1988-08-20',
+            'Sex' => 'F',
+            'Position' => 'Book-keeping',
+            'ContactNumber' => '09179876543',
+            'Address' => '123 Bookkeeping St., Manila',
+            'Educational_Attainment' => 'Bachelor of Science in Accountancy',
+            'Teaching_Position' => 'Book-keeping',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
     

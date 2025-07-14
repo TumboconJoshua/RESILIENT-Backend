@@ -230,6 +230,7 @@ class SuperAdminController extends Controller
                 return [
                     'class_id' => $class->Class_ID,
                     'className' => $class->ClassName ?? null,
+                    'gradeLevel' => $class->Grade_Level ?? null,
                     'curriculum' => $class->Curriculum ?? null,
                     'track' => $class->Track ?? null,
                     'subjects' => $subjects,
